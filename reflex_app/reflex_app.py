@@ -15,11 +15,18 @@ class State(rx.State):
     def did_click(self):
         print("The event on click")
 
+def base_page(*args) -> rx.Component:
+    print([type(x) for x in args])
+    return rx.container(
+        *args,
+        rx.color_mode.button(position="top-right"),
+        rx.logo(),
+    )
 
 def index() -> rx.Component:
     # Welcome Page (Index)
-    return rx.container(
-        rx.color_mode.button(position="top-right"),
+    return base_page(
+        
         rx.vstack(
             rx.heading(State.label, size="9"),
             rx.text(
@@ -41,7 +48,7 @@ def index() -> rx.Component:
             justify="center",
             min_height="85vh",
         ),
-        rx.logo(),
+        
     )
 
 
