@@ -6,13 +6,14 @@ def base_page(child: rx.Component, hide_navbar=False, *args, **kwargs) -> rx.Com
     
     if hide_navbar:
         return rx.container(
-        child,
-        rx.color_mode.button(position="top-right"),
-        rx.logo(),
-    )
+            child,
+            rx.color_mode.button(position="top-right"),
+            rx.logo(),
+        )
     return rx.container(
         navbar(),
         child,
-        rx.color_mode.button(position="top-right"),
+        rx.color_mode.button(position="top-right", id="my-light-mode-btn"),
         rx.logo(),
+        id="my-base-container"
     )
