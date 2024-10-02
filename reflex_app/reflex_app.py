@@ -15,10 +15,22 @@ class State(rx.State):
     def did_click(self):
         print("The event on click")
 
-def base_page(*args) -> rx.Component:
-    print([type(x) for x in args])
+
+def nav_bar() -> rx.components:
+    return rx.heading("SaaS", size="9")
+def base_page(child: rx.Component, hide_navbar=False, *args, **kwargs) -> rx.Component:
+    if not isinstance(child, rx.Component):
+        child = rx.heading("This is not a valid child! element here", size="6"),
+    
+    if hide_navbar:
+        return rx.container(
+        child,
+        rx.color_mode.button(position="top-right"),
+        rx.logo(),
+    )
     return rx.container(
-        *args,
+        nav_bar(),
+        child,
         rx.color_mode.button(position="top-right"),
         rx.logo(),
     )
@@ -48,7 +60,7 @@ def index() -> rx.Component:
             justify="center",
             min_height="85vh",
         ),
-        
+        # hide_navbar=True,
     )
 
 
