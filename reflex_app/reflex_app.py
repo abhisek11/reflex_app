@@ -1,7 +1,7 @@
 """Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 import reflex as rx
-
+from . import pages
 from rxconfig import config
 from .ui.base import base_page
 
@@ -19,9 +19,7 @@ class State(rx.State):
 
 def index() -> rx.Component:
     # Welcome Page (Index)
-    return base_page(
-        
-        rx.vstack(
+    my_child = rx.vstack(
             rx.heading(State.label, size="9"),
             rx.text(
                 "Get started by editing ",
@@ -40,11 +38,15 @@ def index() -> rx.Component:
             ),
             spacing="5",
             justify="center",
+            align="center",
+            # text_align="center",
             min_height="85vh",
-        ),
+            id="my-child"
+        )
         # hide_navbar=True,
-    )
-
+    return base_page(my_child)
 
 app = rx.App()
 app.add_page(index)
+app.add_page(pages.about_page, route='/about')
+app.add_page(pages.pricing_page, route='/pricing')
