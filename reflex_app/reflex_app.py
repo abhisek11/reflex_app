@@ -46,7 +46,21 @@ def index() -> rx.Component:
         # hide_navbar=True,
     return base_page(my_child)
 
-
+def about_page() -> rx.Component:
+    my_child = rx.vstack(
+            rx.heading("About Us", size="9"),
+            rx.text(
+                "Something is cool About Us" 
+            ),
+            spacing="5",
+            justify="center",
+            align="center",
+            min_height="85vh",
+            id="my-child"
+        )
+        # hide_navbar=True,
+    return base_page(my_child)
 
 app = rx.App()
 app.add_page(index)
+app.add_page(about_page, route='/about')
